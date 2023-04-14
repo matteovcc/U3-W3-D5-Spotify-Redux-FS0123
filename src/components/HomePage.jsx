@@ -10,7 +10,7 @@ const HomePage = () => {
   const fetchAlbums = () => {
     fetch(" https://striveschool-api.herokuapp.com/api/deezer/album/75621062")
       .then((response) => response.json())
-      .then((data) => setAlbums(data.data)) // prendo solo i primi 3 album
+      .then(({ data }) => setAlbums(data)) // prendo solo i primi 3 album
       .catch((error) => console.log(error));
   };
   useEffect(() => {
@@ -25,13 +25,12 @@ const HomePage = () => {
           <BasicMain />
           <Container>
             <Row>
-              {albums &&
-                albums?.map((album) => (
-                  <Col md={3} key={album.id}>
-                    <img src={album.picture_medium} alt="" />
-                    <p>{album.title}</p>
-                  </Col>
-                ))}
+              {albums.map((album) => (
+                <Col xs={3} key={album.id}>
+                  <img src={album.cover_medium} alt="" />
+                  <p>{album.title}</p>
+                </Col>
+              ))}
             </Row>
           </Container>
         </Row>
