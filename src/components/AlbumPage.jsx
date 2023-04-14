@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 // import MyFooter from "./MyFooter";
 // import MyNav from "./MyNav";
 import { useParams } from "react-router-dom";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 
-const AlbumPage = () => {
+const AlbumPage = ({ data }) => {
+  const dispatch = useDispatch();
   const params = useParams();
   const [albums, setAlbums] = useState([]);
   const fetchAlbums = async () => {
@@ -38,6 +40,19 @@ const AlbumPage = () => {
             <p>{albums.title}</p>
             <p>{albums.artist}</p>
           </Col>
+          <ul>
+            <li>
+              {albums.tracks}{" "}
+              <Button
+                onClick={() => {
+                  dispatch({ type: "ADD_TO_FAVOURITES", payload: data });
+                }}
+              >
+                {" "}
+                +{" "}
+              </Button>
+            </li>
+          </ul>
         </Row>
       </Container>
       {/* <MyFooter /> */}

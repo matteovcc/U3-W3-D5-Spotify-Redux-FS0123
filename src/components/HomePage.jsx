@@ -5,6 +5,7 @@ import BasicMain from "./BasicMain";
 import MyFooter from "./MyFooter";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Favourites from "./Favourites";
 // import { useParams } from "react-router-dom";
 
 const HomePage = () => {
@@ -39,6 +40,7 @@ const HomePage = () => {
 
           <Container className="mx-auto d-flex justify-content-center">
             <Row>
+              <Favourites />
               {/* {albums &&
                 albums.map((album) => ( */}
               <Col className="mx-auto" xs={12} key={albums.id}>
