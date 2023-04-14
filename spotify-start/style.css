@@ -93,12 +93,8 @@ ul {
   background-color: #282828;
 }
 
-.playerControls #row-controls {
+.playerControls .row {
   justify-content: space-between;
-}
-
-#row-controls {
-  display: flex;
 }
 
 .playerControls a img {
