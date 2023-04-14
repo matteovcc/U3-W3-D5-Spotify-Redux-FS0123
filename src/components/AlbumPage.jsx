@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import MyFooter from "./MyFooter";
-import MyNav from "./MyNav";
+// import MyFooter from "./MyFooter";
+// import MyNav from "./MyNav";
 import { useParams } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
 
@@ -28,7 +28,7 @@ const AlbumPage = () => {
   }, []);
   return (
     <>
-      <MyNav />
+      {/* <MyNav /> */}
       <Container className="d-flex justify-content-center">
         <Row>
           <Col xs={2}>
@@ -40,7 +40,7 @@ const AlbumPage = () => {
           </Col>
         </Row>
       </Container>
-      <MyFooter />
+      {/* <MyFooter /> */}
     </>
   );
 };
