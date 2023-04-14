@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import AlbumCard from "./AlbumCard";
+// import AlbumCard from "./AlbumCard";
 
 const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -44,9 +44,9 @@ const SearchPage = () => {
       <button onClick={search}>Search</button>
       <div id="searchResults">
         <div className="row">
-          {searchResults.map((song) => (
-            <AlbumCard key={song.id} songInfo={song} />
-          ))}
+          {/* {searchResults.map((song) => (
+            // <AlbumCard key={song.id} songInfo={song} />
+          ))} */}
         </div>
       </div>
     </div>
