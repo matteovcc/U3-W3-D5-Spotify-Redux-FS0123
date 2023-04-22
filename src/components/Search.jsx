@@ -1,56 +1,38 @@
-import { useEffect, useState } from "react";
-// import AlbumCard from "./AlbumCard";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSongs } from "../redux/actions";
 
-const SearchPage = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+const Search = () => {
+  const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
+  const songs = useSelector((state) => state.songs);
+  const loading = useSelector((state) => state.loading);
 
-  const search = async () => {
-    try {
-      const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/deezer/search?q=${searchQuery}`,
-        {
-          method: "GET",
-        }
-      ); // gets the information
-
-      if (response.ok) {
-        const result = await response.json();
-        setSearchResults(result.data);
-      } else {
-        console.log("error");
-      }
-    } catch (err) {
-      console.log(err);
-    }
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
   };
 
-  useEffect(() => {
-    search();
-  }, []);
-
-  const handleInputChange = (e) => {
-    setSearchQuery(e.target.value);
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    dispatch(fetchSongs(query));
   };
 
   return (
-    <div>
-      <input
-        id="searchField"
-        type="text"
-        value={searchQuery}
-        onChange={handleInputChange}
-      />
-      <button onClick={search}>Search</button>
-      <div id="searchResults">
-        <div className="row">
-          {/* {searchResults.map((song) => (
-            // <AlbumCard key={song.id} songInfo={song} />
-          ))} */}
-        </div>
-      </div>
+    <div className="text-white">
+      <form onSubmit={handleFormSubmit}>
+        <label>
+          Search songs:
+          <input type="text" value={query} onChange={handleInputChange} />
+        </label>
+        <button type="submit">Search</button>
+      </form>
+      {loading && <p>Loading...</p>}
+      <ul>
+        {songs &&
+          songs.map((song) => <li key={song.id}>{song.data.duration}</li>)}
+      </ul>
     </div>
   );
 };
 
-export default SearchPage;
+export default Search;

@@ -6,6 +6,7 @@ import MyFooter from "./MyFooter";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Favourites from "./Favourites";
+import Search from "./Search";
 // import { useParams } from "react-router-dom";
 
 const HomePage = () => {
@@ -37,6 +38,7 @@ const HomePage = () => {
       <Container fluid>
         <Row>
           <MyNav />
+          <Search />
 
           <Container className="mx-auto d-flex justify-content-center">
             <Row>
